@@ -11,8 +11,6 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        $title = "記事のタイトル";
-        $draft = "記事の原稿";
         for ($i = 1; $i < 11; $i++){
             // 10件のダミーデータを作成する
             $title = "$i"."件目の投稿";
