@@ -11,11 +11,13 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        @for ($i = 1; $i < 11; $i++)
-            # 10件のダミーデータを作成する
-            $title = "{{ $i }}件目の投稿";
-            $draft = "{{ $i }}番目の記事です。";
+        $title = "記事のタイトル";
+        $draft = "記事の原稿";
+        for ($i = 1; $i < 11; $i++){
+            // 10件のダミーデータを作成する
+            $title = "{{ $i }}"."件目の投稿";
+            $draft = "{{ $i }}"."番目の記事です。";
             App\Article::create(['title' => $title, 'draft' => $draft]);
-        @endfor
+        };
     }
 }
