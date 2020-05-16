@@ -11,6 +11,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $tags = ['Docker', 'AWS', 'Laravel', '開発環境'];
+        foreach ($tags as $tag) App\Tag::create(['name' => $tag]);
     }
 }
