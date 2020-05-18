@@ -20,7 +20,13 @@
           編集
         </a>
       </td>
-      <td></td>
+      <td>
+        <form action="{{ route('articles.destroy', ['article' => $article->id]) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <input type="submit" value="記事削除">
+        </form>
+      </td>
     </tr>
     @endforeach
   </table>
