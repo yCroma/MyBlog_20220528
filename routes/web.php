@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('guest', 'GuestController')->only([
+    'index', 'show'
+]);
+
+Route::resource('admin', 'AdminController')->only([
+    'index', 'show'
+]);
+
 Route::resources([
     'admin/articles' => 'ArticleController',
     'admin/tags' => 'TagController',
