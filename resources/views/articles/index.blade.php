@@ -9,7 +9,10 @@
   <h1>記事一覧です。</h1>
   <ul>
     @foreach ($articles as $article)
-    <li>{{ $article->title }}</li>
+    <li>
+    <a href="{{ route('articles.show', ['article' => $article->id]) }}">
+      {{ $article->title }}</a>
+    </li>
     @endforeach
   </ul>
 </body>
