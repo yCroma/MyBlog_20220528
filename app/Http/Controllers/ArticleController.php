@@ -25,7 +25,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -36,7 +36,12 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = Article::create([
+            'title' => $request->title,
+            'draft' => $request->draft,
+        ]);
+        $id = $article -> id;
+        return redirect(route('articles.show', ['article' => $id]));
     }
 
     /**
