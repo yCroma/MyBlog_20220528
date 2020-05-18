@@ -12,5 +12,6 @@
   <hr>
   <p>{!! nl2br(e($article->draft)) !!}</p>
   </div>
+  <p><a href="{{ route('articles.index') }}"><< 記事一覧へ戻る</a></p>
 </body>
 </html>
