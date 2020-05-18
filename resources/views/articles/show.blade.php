@@ -10,7 +10,8 @@
   <div>
   <p>{{ $article->created_at }}</p><br>
   <hr>
-  <p>{{ $article->draft }}</p>
+  <p>{!! nl2br(e($article->draft)) !!}</p>
   </div>
+  <p><a href="{{ route('articles.index') }}"><< 記事一覧へ戻る</a></p>
 </body>
 </html>
