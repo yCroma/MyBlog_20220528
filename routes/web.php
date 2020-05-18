@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resources([
+    'admin/articles' => 'ArticleController',
+    'admin/tags' => 'TagController',
+]);
