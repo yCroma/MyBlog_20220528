@@ -24,6 +24,6 @@ Route::resource('admin', 'AdminController')->only([
 ]);
 
 Route::resources([
-    'admin/articles' => 'ArticleController',
-    'admin/tags' => 'TagController',
+    'articles' => 'ArticleController',
+    'tags' => 'TagController',
 ]);
