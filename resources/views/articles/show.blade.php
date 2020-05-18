@@ -10,7 +10,7 @@
   <div>
   <p>{{ $article->created_at }}</p><br>
   <hr>
-  <p>{{ $article->draft }}</p>
+  <p>{!! nl2br(e($article->draft)) !!}</p>
   </div>
 </body>
 </html>
