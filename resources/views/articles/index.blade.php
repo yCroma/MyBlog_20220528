@@ -7,13 +7,22 @@
 </head>
 <body>
   <h1>記事一覧です。</h1>
-  <ul>
+  <table>
     @foreach ($articles as $article)
-    <li>
-    <a href="{{ route('articles.show', ['article' => $article->id]) }}">
-      {{ $article->title }}</a>
-    </li>
+    <tr>
+      <td>
+        <a href="{{ route('articles.show', ['article' => $article->id]) }}">
+          {{ $article->title }}
+        </a>
+      </td>
+      <td>
+        <a href="{{ route('articles.edit', ['article' => $article->id]) }}">
+          編集
+        </a>
+      </td>
+      <td></td>
+    </tr>
     @endforeach
-  </ul>
+  </table>
 </body>
 </html>
