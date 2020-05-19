@@ -8,7 +8,7 @@
 <body>
   <h1>記事一覧です。</h1>
   <table>
-    @foreach ($articles as $article)
+    @forelse ($articles as $article)
     <tr>
       <td>
         <a href="{{ route('articles.show', ['article' => $article->id]) }}">
@@ -28,7 +28,9 @@
         </form>
       </td>
     </tr>
-    @endforeach
+    @empty
+      <div>該当する記事は0件です。</div>
+    @endforelse
   </table>
 </body>
 </html>
