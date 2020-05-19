@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -36,6 +37,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $draft_id = uniqid(dechex(rand()));
+        $draft = $request->draft;
+        Storage::put($draft_id, $draft);
+
         $article = Article::create([
             'title' => $request->title,
             'draft' => $request->draft,
