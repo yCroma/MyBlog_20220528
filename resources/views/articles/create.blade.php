@@ -18,7 +18,6 @@
     <script>
       var simplemde = new SimpleMDE({ element: document.getElementById("editor") });
     </script>
-
     <br>
     <button type="submit">記事を投稿</button>
   </form>
