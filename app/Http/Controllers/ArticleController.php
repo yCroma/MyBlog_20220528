@@ -69,7 +69,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit', ['article' => $article]);
+        $draft = Storage::get($article->draft);
+        return view('articles.edit', ['article' => $article, 'draft' => $draft]);
     }
 
     /**
@@ -81,6 +82,8 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        $draft_id = $article->draft;
+        Storage::put($draft_id, $request->file_draft);
         $article->fill($request->all())->save();
         $id = $article->id;
         return redirect(route('articles.show', ['article' => $id]));
