@@ -7,6 +7,7 @@
 </head>
 <body>
   <h1>記事一覧です。</h1>
+  <p><a href="{{ route('articles.create') }}">新規記事作成</a></p><br>
   <table>
     @forelse ($articles as $article)
     <tr>
