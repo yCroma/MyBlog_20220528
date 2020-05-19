@@ -43,7 +43,7 @@ class ArticleController extends Controller
 
         $article = Article::create([
             'title' => $request->title,
-            'draft' => $request->draft,
+            'draft' => $draft_id,
         ]);
         $id = $article -> id;
         return redirect(route('articles.show', ['article' => $id]));
@@ -57,7 +57,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles.show', ['article' => $article]);
+        $draft = Storage::get($article->draft);
+        return view('articles.show', ['article' => $article, 'draft' => $draft]);
     }
 
     /**
