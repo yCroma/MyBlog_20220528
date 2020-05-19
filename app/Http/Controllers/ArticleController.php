@@ -98,7 +98,9 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $id = $article->id;
+        $draft_id = $article->draft;
         Article::destroy($id);
+        Storage::delete($draft_id);
         return redirect(route('articles.index'));
     }
 }
