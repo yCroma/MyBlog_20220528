@@ -11,8 +11,8 @@
     @method('put')
     <input type="text" name="title" value="{{ $article->title }}">
     <br>
-    <textarea name="draft" cols="30" rows="10" required>
-      {{ $article->draft }}
+    <textarea name="file_draft" cols="30" rows="10" required>
+      {{ $draft }}
     </textarea>
     <br>
     <button type="submit">投稿</button>
