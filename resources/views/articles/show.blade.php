@@ -11,7 +11,9 @@
   <p>{{ $article->created_at }}</p><br>
   <hr>
   @forelse ($article_tags as $article_tag)
-    {{ $article_tag }}
+    <a href="{{ route('tags.show', ['tag' => $article_tag->id]) }}">
+      {{ $article_tag->name }}
+    </a>
   @empty
   <p>タグ未設定</p>
   @endforelse
