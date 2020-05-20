@@ -20,6 +20,13 @@
       <td>
         {{ $tag->name }}
       </td>
+      <td>
+        <form action="{{ route('tags.destroy',['tag' => $tag->id]) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <input type="submit" value="削除する">
+        </form>
+      </td>
     </tr>
     @empty
       <div>タグはありません。新規作成してください。</div>
