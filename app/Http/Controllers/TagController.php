@@ -36,7 +36,11 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = Tag::create([
+            'name' => $request->new_tag,
+        ]);
+        $id = $tag->id;
+        return redirect(route('tags.index'));
     }
 
     /**
