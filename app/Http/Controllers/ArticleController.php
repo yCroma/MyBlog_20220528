@@ -96,14 +96,8 @@ class ArticleController extends Controller
         $draft = Storage::get($article->draft);
 
         // 記事のIDを元に、記事に関連づけられたタグのオブジェクトを取得
-        $article_tags_obj = Article::find($article->id)->tags;
-
-        // オブジェクトの配列となって渡されるから、必要な要素を抜き出す
-        $article_tags = [];
-        foreach($article_tags_obj as $tag){
-            array_push($article_tags, $tag->name);
-        }
-
+        $article_tags = Article::find($article->id)->tags;
+        
         // 登録した全てのタグの取得
         $tags = Tag::all();
 

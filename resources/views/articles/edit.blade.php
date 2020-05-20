@@ -14,7 +14,7 @@
     <br>
     <!-- 記事に関連づけられたタグを表示 -->
     @forelse ($article_tags as $article_tag)
-      {{ $article_tag }}
+      {{ $article_tag->name }}
     @empty
     <div>タグ未登録</div>
     @endforelse
