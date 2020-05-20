@@ -58,7 +58,11 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $draft = Storage::get($article->draft);
-        return view('articles.show', ['article' => $article, 'draft' => $draft]);
+
+        $parser = new \cebe\markdown\GithubMarkdown();
+        $parse_draft = $parser->parse($draft);
+
+        return view('articles.show', ['article' => $article, 'draft' => $parse_draft]);
     }
 
     /**
