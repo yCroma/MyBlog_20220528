@@ -10,6 +10,12 @@
   <div>
   <p>{{ $article->created_at }}</p><br>
   <hr>
+  @forelse ($article_tags as $article_tag)
+    {{ $article_tag }}
+  @empty
+  <p>タグ未設定</p>
+  @endforelse
+  <hr>
   <p>{!! $draft !!}</p>
   <hr>
   <p><a href="{{ route('articles.index') }}"><< 記事一覧へ戻る</a></p>
