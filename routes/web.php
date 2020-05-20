@@ -19,14 +19,12 @@ Route::resource('guest', 'GuestController')->only([
     'index', 'show'
 ]);
 
+Auth::routes();
+
 Route::resource('admin', 'AdminController')->only([
     'index', 'show'
-]);
-
-Route::resources([
-    'articles' => 'ArticleController',
-    'tags' => 'TagController',
-]);
-Auth::routes();
+])->middleware('auth');
+Route::resource('articles', 'ArticleController')->middleware('auth');
+Route::resource('tags', 'TagController')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
