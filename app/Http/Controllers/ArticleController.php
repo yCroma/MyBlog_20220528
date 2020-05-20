@@ -155,9 +155,21 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        // 記事のIDを取得
         $id = $article->id;
+        // 記事のファイル名を取得
         $draft_id = $article->draft;
+        // 関連を全て取得
+        $article_tags_obj = Article::find($id)->tags;
+        $article_tags = [];
+        foreach($article_tags_obj as $tag){
+            array_push($article_tags, $tag->id);
+        }
+        // 先に関連を解除
+        Article::find($id)->tags()->detach($article_tags);
+        // レコードを削除
         Article::destroy($id);
+        // 記事ファイルを削除
         Storage::delete($draft_id);
         return redirect(route('articles.index'));
     }
