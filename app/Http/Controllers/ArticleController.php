@@ -130,10 +130,20 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // IDを元に記事ファイルの場所を特定と保存
         $draft_id = $article->draft;
         Storage::put($draft_id, $request->file_draft);
         $article->fill($request->all())->save();
+
+        // 記事のID
         $id = $article->id;
+
+        // タグを設定した時のみ更新
+        $new_tag = $request->tags;
+        if ($new_tag != []){
+            Article::find($id)->tags()->sync($new_tag);
+        }
+
         return redirect(route('articles.show', ['article' => $id]));
     }
 
