@@ -39,6 +39,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // 記事の保存
         $draft_id = uniqid(dechex(rand()));
         $draft = $request->draft;
         Storage::put($draft_id, $draft);
@@ -47,7 +48,14 @@ class ArticleController extends Controller
             'title' => $request->title,
             'draft' => $draft_id,
         ]);
+
+        // 新規記事のID取得
         $id = $article -> id;
+
+        // タグの保存
+        $article_tags = $request->tags;
+        Article::find($id)->tags()->attach($article_tags);
+
         return redirect(route('articles.show', ['article' => $id]));
     }
 
