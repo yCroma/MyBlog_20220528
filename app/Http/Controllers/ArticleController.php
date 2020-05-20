@@ -149,6 +149,7 @@ class ArticleController extends Controller
         $draft_id = $article->draft;
         // 関連を全て取得
         $article_tags_obj = Article::find($id)->tags;
+        // オブジェクトの配列から必要な要素を抽出
         $article_tags = [];
         foreach($article_tags_obj as $tag){
             array_push($article_tags, $tag->id);
