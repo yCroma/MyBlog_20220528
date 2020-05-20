@@ -18,7 +18,9 @@
     @forelse ($tags as $tag)
     <tr>
       <td>
-        {{ $tag->name }}
+        <a href="{{ route('tags.show', ['tag' => $tag->id]) }}">
+          {{ $tag->name }}
+        </a>
       </td>
       <td>
         <form action="{{ route('tags.destroy',['tag' => $tag->id]) }}" method="POST">
