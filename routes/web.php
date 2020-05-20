@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('guest', 'GuestController')->only([
+    'index', 'show'
+]);
+
+Auth::routes();
+
+Route::resource('admin', 'AdminController')->only([
+    'index', 'show'
+])->middleware('auth');
+Route::resource('articles', 'ArticleController')->middleware('auth');
+Route::resource('tags', 'TagController')->middleware('auth');
+
+Route::get('/home', 'HomeController@index')->name('home');
