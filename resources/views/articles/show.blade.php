@@ -18,6 +18,10 @@
   <hr>
   <p>{!! $draft !!}</p>
   <hr>
-  <p><a href="{{ route('articles.index') }}"><< 記事一覧へ戻る</a></p>
+  <p>
+    <a href="{{ route('articles.index') }}"><< 記事一覧へ戻る</a>
+    |
+    <a href="{{ route('articles.edit', ['article' => $article->id]) }}">記事を編集する</a>
+  </p>
 </body>
 </html>
