@@ -98,8 +98,27 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        // draftカラムを元に記事ファイルを取得
         $draft = Storage::get($article->draft);
-        return view('articles.edit', ['article' => $article, 'draft' => $draft]);
+
+        // 記事のIDを元に、記事に関連づけられたタグのオブジェクトを取得
+        $article_tags_obj = Article::find($article->id)->tags;
+
+        // オブジェクトの配列となって渡されるから、必要な要素を抜き出す
+        $article_tags = [];
+        foreach($article_tags_obj as $tag){
+            array_push($article_tags, $tag->name);
+        }
+
+        // 登録した全てのタグの取得
+        $tags = Tag::all();
+
+        return view('articles.edit', [
+            'article' => $article,
+            'draft' => $draft,
+            'tags' => $tags,
+            'article_tags' => $article_tags,
+        ]);
     }
 
     /**
