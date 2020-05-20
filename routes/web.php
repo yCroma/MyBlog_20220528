@@ -27,3 +27,6 @@ Route::resources([
     'articles' => 'ArticleController',
     'tags' => 'TagController',
 ]);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
