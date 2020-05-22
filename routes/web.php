@@ -19,7 +19,9 @@ Route::resource('guest', 'GuestController')->only([
     'index', 'show'
 ]);
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::resource('admin', 'AdminController')->only([
     'index', 'show'
