@@ -12,5 +12,15 @@
     <li><a href="{{ route('articles.index') }}">記事一覧へ</a></li>
     <li><a href="{{ route('tags.index') }}">タグ一覧へ</a></li>
   </ul>
+
+  <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
+          document.getElementById('logout-form').submit();">
+          Logout
+  </a>
+
+  <form id="logout-form" action="{{ route('logout') }}" method="POST">
+    @csrf
+  </form>
+
 </body>
 </html>

@@ -19,7 +19,9 @@ Route::resource('guest', 'GuestController')->only([
     'index', 'show'
 ]);
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::resource('admin', 'AdminController')->only([
     'index', 'show'
@@ -27,4 +29,4 @@ Route::resource('admin', 'AdminController')->only([
 Route::resource('articles', 'ArticleController')->middleware('auth');
 Route::resource('tags', 'TagController')->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
