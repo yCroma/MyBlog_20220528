@@ -42,7 +42,8 @@ class ArticleController extends Controller
         // 記事の保存
         $draft_id = uniqid(dechex(rand()));
         $draft = $request->draft;
-        Storage::put($draft_id, $draft);
+        // Storage::put($draft_id, $draft);
+        Storage::disk('s3')->put($draft_id, $draft);
 
         $article = Article::create([
             'title' => $request->title,
@@ -68,7 +69,8 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         // draftカラムから記事ファイルを取得
-        $draft = Storage::get($article->draft);
+        // $draft = Storage::get($article->draft);
+        $draft = Storage::disk('s3')->get($article->draft);
 
         // 記事のIDを元に、記事に関連づけられたタグを取得
         $article_tags = Article::find($article->id)->tags;
@@ -93,7 +95,8 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         // draftカラムを元に記事ファイルを取得
-        $draft = Storage::get($article->draft);
+        // $draft = Storage::get($article->draft);
+        $draft = Storage::disk('s3')->get($article->draft);
 
         // 記事のIDを元に、記事に関連づけられたタグのオブジェクトを取得
         $article_tags = Article::find($article->id)->tags;
@@ -120,7 +123,8 @@ class ArticleController extends Controller
     {
         // IDを元に記事ファイルの場所を特定と保存
         $draft_id = $article->draft;
-        Storage::put($draft_id, $request->file_draft);
+        // Storage::put($draft_id, $request->file_draft);
+        Storage::disk('s3')->put($draft_id, $request->file_draft);
         $article->fill($request->all())->save();
 
         // 記事のID
@@ -159,7 +163,8 @@ class ArticleController extends Controller
         // レコードを削除
         Article::destroy($id);
         // 記事ファイルを削除
-        Storage::delete($draft_id);
+        // Storage::delete($draft_id);
+        Storage::disk('s3')->delete($draft_id);
         return redirect(route('articles.index'));
     }
 }
