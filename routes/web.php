@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/guest', 'GuestController@index')->name('guest.index');
+Route::get('/guest/{article_id}', 'GuestController@show')->name('guest.show');
 
 /*
 Route::resource('guest', 'GuestController')->only([
