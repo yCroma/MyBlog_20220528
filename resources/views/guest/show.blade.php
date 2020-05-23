@@ -10,7 +10,7 @@
   <hr>
   <p>
     @forelse ($tags as $tag)
-      {{ $tag }}
+      {{ $tag->name }}
     @empty
     タグ未設定
     @endforelse
