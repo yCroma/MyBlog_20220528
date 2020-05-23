@@ -13,7 +13,7 @@
     <ul class="list-group">
       @forelse ($articles as $article)
         <li class="list-group-item">
-          <a href="{{ route('guest.show', ['article_id' => $article->id]) }}">
+          <a href="{{ route('guest.show', ['file_name' => $article->draft]) }}">
             {{ $article->title }}
           </a>
           <hr>

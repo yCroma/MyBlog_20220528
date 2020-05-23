@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Article;
 use App\Tag;
 
@@ -27,12 +28,12 @@ class GuestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($article_id)
+    public function show($file_name)
     {
-        // 記事のIDからレコードを取得
-        $article = Article::find($article_id);
-        // レコードからファイルを取得
-        $draft = Storage::disk('s3')->get($article->draft);
+        // ファイル名からレコードを逆検索
+        $article = Article::where('draft', $file_name)->first();
+        // ファイルを取得
+        $draft = Storage::disk('s3')->get($file_name);
         // 記事のIDを元に、タグを取得
         $tags = $article->tags;
         // 記事のMarkdownをHTMLにパース
