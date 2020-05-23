@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Article;
+use App\Tag;
 
 class GuestController extends Controller
 {
@@ -13,8 +16,11 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        // ページネーション
+        $articles = Article::paginate(5);
+        return view('guest.index', ['articles' => $articles]);
     }
+
 
     /**
      * Show the form for creating a new resource.
