@@ -13,7 +13,9 @@
     <ul class="list-group">
       @forelse ($articles as $article)
         <li class="list-group-item">
-          {{ $article->title }}
+          <a href="{{ route('guest.show', ['file_name' => $article->draft]) }}">
+            {{ $article->title }}
+          </a>
           <hr>
           @forelse ($article->tags as $tag)
             {{ $tag->name }}
