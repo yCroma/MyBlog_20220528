@@ -21,37 +21,29 @@ class GuestController extends Controller
         return view('guest.index', ['articles' => $articles]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($article_id)
     {
-        //
+        // 記事のIDからレコードを取得
+        $article = Article::find($article_id);
+        // レコードからファイルを取得
+        $draft = Storage::disk('s3')->get($article->draft);
+        // 記事のIDを元に、タグを取得
+        $tags = $article->tags;
+        // 記事のMarkdownをHTMLにパース
+        $parser = new \cebe\markdown\GithubMarkdown();
+        $parse_draft = $parser->parse($draft);
+
+        return view('guest.show', [
+            'article' => $article,
+            'draft' => $parse_draft,
+            'tags' => $tags,    
+        ]);
     }
 
     /**
