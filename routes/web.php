@@ -15,9 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/guest', 'GuestController@index')->name('guest.index');
+
+/*
 Route::resource('guest', 'GuestController')->only([
     'index', 'show'
 ]);
+*/
 
 Auth::routes([
     'register' => false
