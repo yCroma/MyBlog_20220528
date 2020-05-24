@@ -46,4 +46,19 @@ class GuestController extends Controller
             'tags' => $tags,    
         ]);
     }
+
+    public function tag($tag_name)
+    {
+        // タグ名を元にレコードを逆検索
+        $tag = Tag::where('name', $tag_name)->first();
+        // タグのIDを取得
+        $tag_id = $tag->id;
+        // タグに関係を持っている記事を取得
+        $tag_articles = Tag::find($tag_id)->articles;
+
+        return view('guest.tag',[
+            'tag' => $tag,
+            'tag_articles' => $tag_articles,
+        ]);
+    }
 }
