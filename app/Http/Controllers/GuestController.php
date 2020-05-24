@@ -19,7 +19,13 @@ class GuestController extends Controller
     {
         // ページネーション
         $articles = Article::paginate(5);
-        return view('guest.index', ['articles' => $articles]);
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+        
+        return view('guest.index', [
+            'articles' => $articles,
+            'view_tags' => $view_tags,
+        ]);
     }
 
     /**
