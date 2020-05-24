@@ -66,9 +66,13 @@ class GuestController extends Controller
         // タグに関係を持っている記事を取得
         $tag_articles = Tag::find($tag_id)->articles;
 
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
         return view('guest.tag',[
             'tag' => $tag,
             'tag_articles' => $tag_articles,
+            'view_tags' => $view_tags
         ]);
     }
 }
