@@ -1,21 +1,29 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guestのshowページ</title>
-</head>
-<body>
-  <h1>{{ $article->title }}</h1>
-  <hr>
-  <p>
-    @forelse ($tags as $tag)
-      {{ $tag->name }}
-    @empty
-    タグ未設定
-    @endforelse
-  </p>
-  <hr>
-  <p>{!! $draft !!}</p>
-</body>
-</html>
+@extends('layouts.guest_main')
+
+@section('page_title')
+  {{ $article->title }}
+@endsection
+
+@section('main')
+  <div class="card">
+    <div class="card-body" style="height:800px;">
+      <p class="card-text">
+        投稿日: {{ $article->created_at }}
+      </p>
+      <h1 class="card-title display-4">
+        {{ $article->title }}
+      </h1>
+      <p>
+      @forelse ($tags as $tag)
+        <a class="badge badge-secondary" href="{{ route('guest.tag', ['tag_name' => $tag->name]) }}">
+        {{ $tag->name }}
+      </a>
+      @empty
+      @endforelse
+      </p>
+      <article>
+        {!! $draft !!}
+      </article>
+    </div>
+  </div>
+@endsection
