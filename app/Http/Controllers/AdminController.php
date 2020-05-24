@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
 
 class AdminController extends Controller
 {
@@ -13,7 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $view_tags = Tag::all();
+        return view('admin.index', ['view_tags' => $view_tags]);
     }
 
     /**
