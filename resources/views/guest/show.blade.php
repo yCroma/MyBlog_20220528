@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-  <div class="card">
+  <div class="card my-2">
     <div class="card-body" style="height:800px;">
       <p class="card-text">
         投稿日: {{ $article->created_at }}

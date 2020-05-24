@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- icon fontawesome -->
+    <script src="https://kit.fontawesome.com/813892e154.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div id="container">
@@ -41,10 +44,14 @@
     </div>
     <!-- フッター -->
     <div class="row">
-      <footer class="col-12 bg-primary">
-        <h1 class="display-2 text-center text-white m-2">
-          フッター
-        </h1>
+      <footer class="col-12 bg-primary" style="height:80px;">
+        <p class="text-center mt-4">
+          <a href="https://github.com/yCroma" class="text-dark">
+            <i class="fab fa-github fa-2x" style="size: 7x;">
+              yCroma
+            </i>
+          </a>
+        </p>
       </footer>
     </div>
   </div>

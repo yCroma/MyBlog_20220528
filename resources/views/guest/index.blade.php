@@ -5,7 +5,8 @@
 @endsection
 
 @section('main')
-<ul class="list-group">
+<div id="flame" style="height:800px;">
+<ul class="list-group mt-2" >
   @forelse ($articles as $article)
   <li class="list-group-item">
     <p>投稿日:{{ $article->created_at }}</p>
@@ -29,4 +30,5 @@
   @endforelse
 </ul>
 {{ $articles->links() }}
+</div>
 @endsection
