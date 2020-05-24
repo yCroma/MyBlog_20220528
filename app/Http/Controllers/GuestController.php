@@ -64,7 +64,10 @@ class GuestController extends Controller
         // タグのIDを取得
         $tag_id = $tag->id;
         // タグに関係を持っている記事を取得
-        $tag_articles = Tag::find($tag_id)->articles;
+        $tag_articles = Tag::find($tag_id)->articles()
+                            ->withPivot('created_at')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
 
         // 描画用のタグ一覧
         $view_tags = Tag::all();
