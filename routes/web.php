@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/guest', 'GuestController@index')->name('guest.index');
 Route::get('/guest/{file_name}', 'GuestController@show')->name('guest.show');
+Route::get('/guest/tags/{tag_name}', 'GuestController@tag')->name('guest.tag');
 
 /*
 Route::resource('guest', 'GuestController')->only([

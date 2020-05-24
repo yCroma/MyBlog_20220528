@@ -47,37 +47,18 @@ class GuestController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function tag($tag_name)
     {
-        //
-    }
+        // タグ名を元にレコードを逆検索
+        $tag = Tag::where('name', $tag_name)->first();
+        // タグのIDを取得
+        $tag_id = $tag->id;
+        // タグに関係を持っている記事を取得
+        $tag_articles = Tag::find($tag_id)->articles;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('guest.tag',[
+            'tag' => $tag,
+            'tag_articles' => $tag_articles,
+        ]);
     }
 }
