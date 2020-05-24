@@ -1,14 +1,19 @@
 @extends('layouts.guest_main')
+
+@section('page_title')
+  Cromalog
+@endsection
+
 @section('main')
 <ul class="list-group">
   @forelse ($articles as $article)
   <li class="list-group-item">
     <p>投稿日:{{ $article->created_at }}</p>
-    <h3>
-      <a href="{{ route('guest.show', ['file_name' => $article->draft]) }}">
+    <a href="{{ route('guest.show', ['file_name' => $article->draft]) }}">
+      <h3 class="text-dark">
         {{ $article->title }}
-      </a>
-    </h3>
+      </h3>
+    </a>
     <br>
     <div class="text-right">
     @forelse ($article->tags as $tag)
