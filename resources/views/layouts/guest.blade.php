@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('page_title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,9 +24,11 @@
     <!-- ヘッダー -->
     <div class="row">
       <header class="col-12 bg-dark">
-        <h1 class="display-2 text-center text-white m-2">
-          Cromalog
-        </h1>
+        <a href="/guest">
+          <h1 class="display-2 text-center text-white m-2">
+            Cromalog
+          </h1>
+        </a>
         <p class="text-center text-white m-2">
           勉強したものや、あとで振り返りたいもの書いていきます。<br>
           当分はこれまでに書きためたやつを載せていきます。
@@ -39,7 +41,7 @@
     </div>
     <!-- フッター -->
     <div class="row">
-      <footer class="col-12 bg-info">
+      <footer class="col-12 bg-primary">
         <h1 class="display-2 text-center text-white m-2">
           フッター
         </h1>
