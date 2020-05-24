@@ -1,31 +1,36 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $tag->name }}の検索結果</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-  <div class="container">
-    <h1>{{ $tag->name }}</h1>
-    <ul class="list-group">
-      @forelse ($tag_articles as $tag_article)
-        <li class="list-group-item">
-          <a href="{{ route('guest.show', ['file_name' => $tag_article->draft]) }}">
-            {{ $tag_article->title }}
-          </a>
-          <hr>
-          @forelse ($tag_article->tags as $tag)
-            {{ $tag->name }}
-          @empty
-            タグ未登録
-          @endforelse
-        </li>
+@extends('layouts.guest_main')
+
+@section('page_title')
+  {{ $tag->name }}の検索結果
+@endsection
+
+@section('main')
+  <ul class="list-group mb-2">
+    <li class="list-group-item mt-2">
+      <h2 class="mt-3"> 
+          {{ $tag->name }}に関する記事
+      </h2>
+    </li>
+    @forelse ($tag_articles as $tag_article)
+    <li class="list-group-item">
+      <p>投稿日:{{ $tag_article->created_at }}</p>
+      <a href="{{ route('guest.show', ['file_name' => $tag_article->draft]) }}">
+        <h3 class="text-dark">
+          {{ $tag_article->title }}
+        </h3>
+      </a>
+      <br>
+      <div class="text-right">
+      @forelse ($tag_article->tags as $tag)
+        <a class="badge badge-secondary" href="{{ route('guest.tag', ['tag_name' => $tag->name]) }}">
+          {{ $tag->name }}
+        </a>
       @empty
+        <p>タグ未登録</p>
       @endforelse
-    </ul>
-  </div>
-</body>
-</html>
+      </div>
+    </li>
+    @empty
+    @endforelse
+  </ul>
+@endsection
