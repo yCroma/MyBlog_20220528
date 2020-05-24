@@ -18,7 +18,7 @@ class GuestController extends Controller
     public function index()
     {
         // ページネーション
-        $articles = Article::paginate(5);
+        $articles = Article::latest()->paginate(5);
         // 描画用のタグ一覧
         $view_tags = Tag::all();
         
@@ -64,7 +64,10 @@ class GuestController extends Controller
         // タグのIDを取得
         $tag_id = $tag->id;
         // タグに関係を持っている記事を取得
-        $tag_articles = Tag::find($tag_id)->articles;
+        $tag_articles = Tag::find($tag_id)->articles()
+                            ->withPivot('created_at')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
 
         // 描画用のタグ一覧
         $view_tags = Tag::all();

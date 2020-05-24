@@ -31,6 +31,9 @@
       </div>
     </li>
     @empty
+    <li class="list-group-item mt-2">
+      投稿されている記事はありません
+    </li>
     @endforelse
   </ul>
 @endsection
