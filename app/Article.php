@@ -10,6 +10,11 @@ class Article extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('created_at', 'asc');
     }
 }
