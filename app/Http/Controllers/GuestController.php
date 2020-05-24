@@ -46,10 +46,14 @@ class GuestController extends Controller
         $parser = new \cebe\markdown\GithubMarkdown();
         $parse_draft = $parser->parse($draft);
 
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
         return view('guest.show', [
             'article' => $article,
             'draft' => $parse_draft,
-            'tags' => $tags,    
+            'tags' => $tags,
+            'view_tags' => $view_tags
         ]);
     }
 
