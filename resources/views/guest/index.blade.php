@@ -18,7 +18,9 @@
           </a>
           <hr>
           @forelse ($article->tags as $tag)
-            {{ $tag->name }}
+            <a href="{{ route('guest.tag', ['tag_name' => $tag->name]) }}">
+              {{ $tag->name }}
+            </a>
           @empty
             タグ未登録
           @endforelse
