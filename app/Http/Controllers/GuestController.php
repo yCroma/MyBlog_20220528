@@ -18,7 +18,7 @@ class GuestController extends Controller
     public function index()
     {
         // ページネーション
-        $articles = Article::paginate(5);
+        $articles = Article::latest()->paginate(5);
         // 描画用のタグ一覧
         $view_tags = Tag::all();
         
