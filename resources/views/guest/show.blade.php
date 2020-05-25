@@ -10,7 +10,7 @@
       <p class="card-text">
         投稿日: {{ $article->created_at }}
       </p>
-      <h1 class="card-title display-4">
+      <h1 class="card-title display-5">
         {{ $article->title }}
       </h1>
       <p>
