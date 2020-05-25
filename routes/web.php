@@ -11,13 +11,21 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
+Route::get('/', 'GuestController@index')->name('guest.index');
+Route::get('/draft/{file_name}', 'GuestController@show')->name('guest.show');
+Route::get('/tags/{tag_name}', 'GuestController@tag')->name('guest.tag');
+
+/*
 Route::resource('guest', 'GuestController')->only([
     'index', 'show'
 ]);
+*/
 
 Auth::routes([
     'register' => false
@@ -27,6 +35,8 @@ Route::resource('admin', 'AdminController')->only([
     'index', 'show'
 ])->middleware('auth');
 Route::resource('articles', 'ArticleController')->middleware('auth');
-Route::resource('tags', 'TagController')->middleware('auth');
+Route::resource('tags', 'TagController')->only([
+    'index', 'store', 'show', 'destroy'
+])->middleware('auth');
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -11,18 +11,18 @@
           {{ $tag->name }}の記事一覧
       </h2>
     </li>
-    @forelse ($articles as $article)
+    @forelse ($tag_articles as $tag_article)
     <li class="list-group-item">
-      <p>投稿日:{{ $article->created_at }}</p>
-      <a href="{{ route('articles.show', ['article' => $article->id]) }}">
+      <p>投稿日:{{ $tag_article->created_at }}</p>
+      <a href="{{ route('guest.show', ['file_name' => $tag_article->draft]) }}">
         <h3 class="text-dark">
-          {{ $article->title }}
+          {{ $tag_article->title }}
         </h3>
       </a>
       <br>
       <div class="text-right">
-      @forelse ($article->tags as $tag)
-        <a class="badge badge-secondary" href="{{ route('tags.show', ['tag' => $tag->id]) }}">
+      @forelse ($tag_article->tags as $tag)
+        <a class="badge badge-secondary" href="{{ route('guest.tag', ['tag_name' => $tag->name]) }}">
           {{ $tag->name }}
         </a>
       @empty

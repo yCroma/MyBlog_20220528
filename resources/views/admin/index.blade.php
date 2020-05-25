@@ -1,26 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin</title>
-</head>
-<body>
-  <h1>AdminのIndexページ</h1>
-  <ul>
-    <li><a href="{{ route('articles.create') }}">新規記事作成</a></li>
-    <li><a href="{{ route('articles.index') }}">記事一覧へ</a></li>
-    <li><a href="{{ route('tags.index') }}">タグ一覧へ</a></li>
-  </ul>
+@extends('layouts.guest_main')
 
-  <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
-          document.getElementById('logout-form').submit();">
-          Logout
-  </a>
+@section('page_title')
+  Admin
+@endsection
+
+@section('main')
+  <div id="flame" style="height:800px;">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">
+        AdminのIndexページ
+      </h1>
+      <p class="card-text">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{{ route('articles.create') }}" class="text-dark">
+              新規記事作成
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="{{ route('articles.index') }}" class="text-dark">
+              記事一覧へ
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="{{ route('tags.index') }}" class="text-dark">
+              タグ一覧へ
+            </a>
+          </li>
+        </ul>
+      </p>
+    </div>
+  </div>
 
   <form id="logout-form" action="{{ route('logout') }}" method="POST">
     @csrf
   </form>
-
-</body>
-</html>
+  </div>
+@endsection

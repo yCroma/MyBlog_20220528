@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
@@ -16,8 +17,13 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('articles.index', ['articles' => $articles]);
+        $articles = Article::latest()->paginate(5);
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+        return view('articles.index', [
+            'articles' => $articles,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**
@@ -27,8 +33,14 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        // 記事のタグ設定用
         $tags = Tag::all();
-        return view('articles.create', ['tags' => $tags]);
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+        return view('articles.create', [
+            'tags' => $tags,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**
@@ -79,10 +91,14 @@ class ArticleController extends Controller
         $parser = new \cebe\markdown\GithubMarkdown();
         $parse_draft = $parser->parse($draft);
 
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
         return view('articles.show', [
             'article' => $article,
             'draft' => $parse_draft,
-            'article_tags' => $article_tags,    
+            'article_tags' => $article_tags,
+            'view_tags' => $view_tags
         ]);
     }
 
@@ -104,11 +120,15 @@ class ArticleController extends Controller
         // 登録した全てのタグの取得
         $tags = Tag::all();
 
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
         return view('articles.edit', [
             'article' => $article,
             'draft' => $draft,
             'tags' => $tags,
             'article_tags' => $article_tags,
+            'view_tags' => $view_tags
         ]);
     }
 

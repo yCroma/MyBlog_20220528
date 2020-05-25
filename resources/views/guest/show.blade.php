@@ -5,7 +5,6 @@
 @endsection
 
 @section('main')
-
   <div class="card my-2">
     <div class="card-body" style="height:800px;">
       <p class="card-text">
@@ -15,12 +14,11 @@
         {{ $article->title }}
       </h1>
       <p>
-      @forelse ($article_tags as $article_tag)
-        <a class="badge badge-secondary" href="{{ route('tags.show', ['tag' => $article_tag->id]) }}">
-        {{ $article_tag->name }}
+      @forelse ($tags as $tag)
+        <a class="badge badge-secondary" href="{{ route('guest.tag', ['tag_name' => $tag->name]) }}">
+        {{ $tag->name }}
       </a>
       @empty
-      <p>タグ未設定</p>
       @endforelse
       </p>
       <article>
@@ -28,13 +26,4 @@
       </article>
     </div>
   </div>
-  <p>
-    <a href="{{ route('articles.index') }}" class="text-dark">
-      << 記事一覧へ戻る
-    </a>
-      |
-    <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="text-dark">
-      記事を編集する
-    </a>
-  </p>
 @endsection
