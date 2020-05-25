@@ -34,7 +34,7 @@
           </h1>
         </a>
         @else
-        <a href="/guest">
+        <a href="/">
           <h1 class="display-2 text-white m-2">
             Cromalog
           </h1>
