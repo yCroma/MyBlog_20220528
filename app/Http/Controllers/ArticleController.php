@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
@@ -16,7 +17,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::latest()->paginate(5);
         // 描画用のタグ一覧
         $view_tags = Tag::all();
         return view('articles.index', [
