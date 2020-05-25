@@ -17,7 +17,12 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-        return view('articles.index', ['articles' => $articles]);
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+        return view('articles.index', [
+            'articles' => $articles,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**
@@ -27,8 +32,14 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        // 記事のタグ設定用
         $tags = Tag::all();
-        return view('articles.create', ['tags' => $tags]);
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+        return view('articles.create', [
+            'tags' => $tags,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**
