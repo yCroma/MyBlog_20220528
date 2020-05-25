@@ -12,4 +12,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Article');
     }
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('created_at', 'asc');
+    }
 }

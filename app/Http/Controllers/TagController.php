@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
@@ -14,8 +15,14 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('tags.index', ['tags' => $tags]);
+        $tags = Tag::latest()->paginate(9);
+
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+        return view('tags.index', [
+            'tags' => $tags,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**
