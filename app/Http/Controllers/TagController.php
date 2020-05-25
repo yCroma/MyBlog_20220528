@@ -54,6 +54,14 @@ class TagController extends Controller
         $id = $tag->id;
         $articles = Tag::find($id)->articles;
         return view('tags.show',['tag' => $tag ,'articles' => $articles]);
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
+        return view('tags.show',[
+            'tag' => $tag,
+            'articles' => $articles,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**
