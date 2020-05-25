@@ -33,6 +33,8 @@ Route::resource('admin', 'AdminController')->only([
     'index', 'show'
 ])->middleware('auth');
 Route::resource('articles', 'ArticleController')->middleware('auth');
-Route::resource('tags', 'TagController')->middleware('auth');
+Route::resource('tags', 'TagController')->only([
+    'index', 'store', 'show', 'destroy'
+])->middleware('auth');
 
 // Route::get('/home', 'HomeController@index')->name('home');
