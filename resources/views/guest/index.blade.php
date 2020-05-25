@@ -22,7 +22,7 @@
         {{ $tag->name }}
       </a>
     @empty
-      <p>タグ未登録</p>
+      <p class="badge badge-secondary">タグ未登録</p>
     @endforelse
     </div>
   </li>
