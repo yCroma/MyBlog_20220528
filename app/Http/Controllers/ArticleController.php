@@ -90,10 +90,14 @@ class ArticleController extends Controller
         $parser = new \cebe\markdown\GithubMarkdown();
         $parse_draft = $parser->parse($draft);
 
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
         return view('articles.show', [
             'article' => $article,
             'draft' => $parse_draft,
-            'article_tags' => $article_tags,    
+            'article_tags' => $article_tags,
+            'view_tags' => $view_tags
         ]);
     }
 
