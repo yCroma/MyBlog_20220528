@@ -27,11 +27,19 @@
     <!-- ヘッダー -->
     <div class="row">
       <header class="col-12 bg-dark text-center">
+        @auth
+        <a href="/admin">
+          <h1 class="display-2 text-white m-2">
+            Cromalog
+          </h1>
+        </a>
+        @else
         <a href="/guest">
           <h1 class="display-2 text-white m-2">
             Cromalog
           </h1>
         </a>
+        @endauth
         @auth
         <h5 class="text-white m-2">
           現在、Adminでログインしています。
