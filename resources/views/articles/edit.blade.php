@@ -1,42 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $article->title }}の編集</title>
-</head>
-<body>
-  <form action="{{ route('articles.update', ['article' => $article->id]) }}" method="post">
-    @csrf
-    @method('put')
-    <!-- 記事のタイトルを表示 -->
-    <input type="text" name="title" value="{{ $article->title }}">
-    <br>
-    <!-- 記事に関連づけられたタグを表示 -->
-    @forelse ($article_tags as $article_tag)
-      {{ $article_tag->name }}
-    @empty
-    <div>タグ未登録</div>
-    @endforelse
-    <br>
-    <!-- 登録されているタグを表示 -->
-    @forelse ($tags as $tag)
-      <input type="checkbox" name="tags[]" value="{{ $tag->id }}">{{ $tag->name }}
-    @empty
-    <div>タグ未登録</div>
-    @endforelse
-    <br>
-    <!-- エディター -->
-    <textarea id="editor" name="file_draft" cols="30" rows="10" required>{{ $draft }}</textarea>
+@extends('layouts.guest_main')
+  
+@section('page_title')
+  {{ $article->title }}の編集
+@endsection
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    <script>
-      var simplemde = new SimpleMDE({ element: document.getElementById("editor") });
-    </script>
+@section('main')
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title display-5">
+        記事編集
+      </h1>
+      
+      <form action="{{ route('articles.update', ['article' => $article->id]) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <input class="form-control form-control-lg" type="text" name="title" value="{{ $article->title }}">
+        <br>
+        <!-- 記事に関連づけられたタグを表示 -->
+        @forelse ($article_tags as $article_tag)
+          <div class="badge badge-secondary">
+            {{ $article_tag->name }}
+          </div>
+        @empty
+          <div class="badge badge-secondary">タグ未登録</div>
+        @endforelse
+        <!-- タグを登録した場合、更新 -->
+        <p class="text-dark">タグを更新する</p>
+        @forelse ($tags as $tag)
+        <input type="checkbox" name="tags[]" value="{{ $tag->id }}">{{ $tag->name }}
+        @empty
+        <p>登録されているタグはありません</p>
+        @endforelse
+        <br>
+        <textarea id="editor" name="file_draft" cols="30" rows="10" required>{{ $draft }}</textarea>
 
-    <br>
-    <button type="submit">投稿</button>
-  </form>
-</body>
-</html>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <script>
+          var simplemde = new SimpleMDE({ element: document.getElementById("editor") });
+        </script>
+        <br>
+        <div class="text-right">
+          <button type="submit" class="btn btn-secondary btn-sm">記事を更新</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+@endsection

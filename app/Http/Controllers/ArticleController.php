@@ -120,11 +120,15 @@ class ArticleController extends Controller
         // 登録した全てのタグの取得
         $tags = Tag::all();
 
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
         return view('articles.edit', [
             'article' => $article,
             'draft' => $draft,
             'tags' => $tags,
             'article_tags' => $article_tags,
+            'view_tags' => $view_tags
         ]);
     }
 
