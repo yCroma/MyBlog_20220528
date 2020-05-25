@@ -52,8 +52,21 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         $id = $tag->id;
-        $articles = Tag::find($id)->articles;
-        return view('tags.show',['tag' => $tag ,'articles' => $articles]);
+        // $articles = Tag::find($id)->articles;
+        // タグに関係を持っている記事を取得(新しい順)
+        $articles = Tag::find($id)->articles()
+                            ->withPivot('created_at')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        
+        // 描画用のタグ一覧
+        $view_tags = Tag::all();
+
+        return view('tags.show',[
+            'tag' => $tag,
+            'articles' => $articles,
+            'view_tags' => $view_tags
+        ]);
     }
 
     /**

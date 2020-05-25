@@ -1,14 +1,14 @@
 @extends('layouts.guest_main')
 
 @section('page_title')
-  {{ $tag->name }}の検索結果
+  {{ $tag->name }}の記事一覧
 @endsection
 
 @section('main')
   <ul class="list-group mb-2">
     <li class="list-group-item mt-2">
       <h2 class="mt-3"> 
-          {{ $tag->name }}に関する記事
+          {{ $tag->name }}の記事一覧
       </h2>
     </li>
     @forelse ($tag_articles as $tag_article)

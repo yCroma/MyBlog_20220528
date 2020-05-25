@@ -11,13 +11,23 @@
   <div class="card m-2">
     <div class="card-body">
       <p class="card-text">
-      @foreach ($view_tags as $view_tag)
-        <a href="{{ route('guest.tag', ['tag_name' => $view_tag->name]) }}" class="text-secondary">
-          {{ $view_tag->name }}
-          <hr>
-        </a>
-      @endforeach
+      @auth
+        @foreach ($view_tags as $view_tag)
+          <a href="{{ route('tags.show', ['tag' => $view_tag->id]) }}" class="text-secondary">
+            {{ $view_tag->name }}
+            <hr>
+          </a>
+          @endforeach
+        </p>
+      @else
+        @foreach ($view_tags as $view_tag)
+          <a href="{{ route('guest.tag', ['tag_name' => $view_tag->name]) }}" class="text-secondary">
+            {{ $view_tag->name }}
+            <hr>
+          </a>
+        @endforeach
       </p>
+      @endauth
     </div>
   </div>
 </div>
