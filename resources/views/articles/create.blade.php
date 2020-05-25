@@ -1,6 +1,6 @@
 @extends('layouts.guest_main')
 
-@section('page_name')
+@section('page_title')
   新規記事作成
 @endsection
 
