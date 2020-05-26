@@ -22,7 +22,7 @@
       <br>
       <div class="text-right">
       @forelse ($article->tags as $tag)
-        <a class="badge badge-secondary" href="{{ route('tags.show', ['tag' => $tag->id]) }}">
+        <a class="badge badge-secondary" href="/admin/tags/{{ $tag->id }}">
           {{ $tag->name }}
         </a>
       @empty
