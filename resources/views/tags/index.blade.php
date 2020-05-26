@@ -25,7 +25,7 @@
   </li>
   @forelse ($tags as $tag)
   <li class="list-group-item">
-    <a href="{{ route('tags.show', ['tag' => $tag->id]) }}">
+    <a href="/admin/tags/{{ $tag->id }}">
           {{ $tag->name }}
     </a>
     
