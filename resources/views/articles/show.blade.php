@@ -16,7 +16,7 @@
       </h1>
       <p>
       @forelse ($article_tags as $article_tag)
-        <a class="badge badge-secondary" href="{{ route('tags.show', ['tag' => $article_tag->id]) }}">
+        <a class="badge badge-secondary" href="/admin/tags/{{ $article_tag->id }}">
         {{ $article_tag->name }}
       </a>
       @empty
