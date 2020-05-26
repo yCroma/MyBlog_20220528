@@ -10,22 +10,19 @@
 <ul class="list-group mt-2" >
   @forelse ($articles as $article)
   <li class="list-group-item">
-    <p>
+    <div>
       投稿日:{{ $article->created_at }}
 
-      <a href="{{ route('articles.destroy', ['article' => $article->id]) }}" onclick="event.preventDefault(); 
-                  document.getElementById('delete-form').submit();" class="float-right text-dark">
-          削除
-      </a>
-      <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="float-right text-dark">
-        編集
-      </a>
-      
-      <form id="delete-form" action="{{ route('articles.destroy', ['article' => $article->id]) }}" method="POST">
+      <form action="{{ route('articles.destroy', ['article' => $article->id]) }}" method="POST" class="float-right">
         @csrf
         @method('DELETE')
+        <input type="submit" value="削除" class="btn btn-light btn-sm">
       </form>
-    </p>
+
+      <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="float-right btn btn-light btn-sm">
+        編集
+      </a>
+    </div>
     
     <a href="{{ route('articles.show', ['article' => $article->id]) }}">
       <h3 class="text-dark">

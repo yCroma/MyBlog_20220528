@@ -12,20 +12,24 @@
     <div class="card-body">
       <p class="card-text">
       @auth
-        @foreach ($view_tags as $view_tag)
-          <a href="{{ route('tags.show', ['tag' => $view_tag->id]) }}" class="text-secondary">
+        @forelse ($view_tags as $view_tag)
+          <a href="/admin/tags/{{ $view_tag->id }}" class="text-secondary">
             {{ $view_tag->name }}
             <hr>
           </a>
-          @endforeach
+        @empty
+         <p class="text-secondary">タグ未登録</p>
+        @endforelse
         </p>
       @else
-        @foreach ($view_tags as $view_tag)
+        @forelse ($view_tags as $view_tag)
           <a href="{{ route('guest.tag', ['tag_name' => $view_tag->name]) }}" class="text-secondary">
             {{ $view_tag->name }}
             <hr>
           </a>
-        @endforeach
+        @empty
+         <p class="text-secondary">タグ未登録</p>
+        @endforelse
       </p>
       @endauth
     </div>
