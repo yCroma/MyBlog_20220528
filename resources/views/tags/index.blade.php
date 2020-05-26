@@ -28,14 +28,12 @@
     <a href="{{ route('tags.show', ['tag' => $tag->id]) }}">
           {{ $tag->name }}
     </a>
-    <a href="{{ route('tags.destroy', ['tag' => $tag->id]) }}" onclick="event.preventDefault(); 
-            document.getElementById('delete-form').submit();" class="float-right text-dark">
-      削除
-    </a>
-    <form id="delete-form" action="{{ route('tags.destroy', ['tag' => $tag->id]) }}" method="POST">
-        @csrf
-        @method('DELETE')
-      </form>
+    
+    <form action="{{ route('tags.destroy', ['tag' => $tag->id]) }}" method="POST" class="float-right">
+      @csrf
+      @method('DELETE')
+      <input type="submit" value="削除" class="btn btn-light btn-sm">
+    </form>
     <p>
   @empty
   @endforelse
